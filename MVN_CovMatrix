@@ -1,0 +1,37 @@
+Sigma = matrix(nrow=2, ncol=2);
+Sigma[1,1] = 1;
+Sigma[1,2] = 0.7;
+Sigma[2,1] = Sigma[1,2];
+Sigma[2,2] = 1;
+
+L = chol(Sigma)
+
+X = rnorm(2000)
+
+y = matrix(nrow = 2, ncol = 1000);
+for (i in 1:1000)
+{y[ ,i]=L%*%rbind(X[2*i-1],X[2*i])+rbind(-1, 1);
+}
+
+plot(y[1,],y[2,])
+
+t(L)%*%L
+
+Sigma = matrix(nrow=2, ncol=2);
+Sigma[1,1] = 1;
+Sigma[1,2] = -0.7;
+Sigma[2,1] = Sigma[1,2];
+Sigma[2,2] = 1;
+
+L = chol(Sigma)
+
+X = rnorm(2000)
+
+y = matrix(nrow = 2, ncol = 1000);
+for (i in 1:1000)
+{y[ ,i]=L%*%rbind(X[2*i-1],X[2*i])+rbind(-1, 1);
+}
+
+plot(y[1,],y[2,])
+
+t(L)%*%L
